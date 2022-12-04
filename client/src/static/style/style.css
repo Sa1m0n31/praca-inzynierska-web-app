@@ -106,3 +106,78 @@
     color: #fff !important;
     position: absolute;
 }
+
+#react-select-3-listbox > * > *,
+#react-select-2-listbox > * > * {
+    background: var(--dark);
+    cursor: pointer;
+}
+
+#react-select-3-listbox > * > *:hover,
+#react-select-2-listbox > * > *:hover {
+    background: #E83651 !important;
+}
+
+.css-qbdosj-Input {
+    opacity: 0;
+}
+
+.block__team {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 40%;
+}
+
+.block__score {
+    width: 20%;
+}
+
+.block__team:last-of-type {
+    justify-content: flex-end;
+}
+
+.block__team .img {
+    width: 70px;
+    margin-right: 20px;
+}
+
+.block__team:last-of-type .img {
+    margin-right: 0;
+    margin-left: 20px;
+}
+
+.block__score * {
+    text-align: center;
+}
+
+.block__score__full {
+    font-size: 24px;
+}
+
+.block__score__halfTime {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.block__score__date {
+    margin-top: 8px;
+}
+
+.block__score__date span {
+    display: block;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.block__singleH2HMatch {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 25px 0;
+}
+
+.block__team__name--win {
+    font-weight: 700;
+    color: lightgreen;
+}
