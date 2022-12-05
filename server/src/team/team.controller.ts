@@ -17,4 +17,14 @@ export class TeamController {
     getHead2Head(@Param('home') home, @Param('away') away) {
         return this.teamService.getHead2Head(home, away);
     }
+
+    @Get('/getSquad/:team')
+    getSquad(@Param('team') team) {
+        return this.teamService.getSquad(team);
+    }
+
+    @Get('/getMatches/:team/:season')
+    getMatches(@Param('team') team, @Param('season') season) {
+        return this.teamService.getTeamMatches(team, season);
+    }
 }

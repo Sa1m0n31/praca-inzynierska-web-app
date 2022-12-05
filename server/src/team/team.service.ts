@@ -25,7 +25,34 @@ export class TeamService {
                 'Accept-Encoding': 'application/json'
             }
         });
-        console.log(res.data);
+        return res.data.response;
+    }
+
+    async getSquad(id: number) {
+        const res = await axios.get(`https://v3.football.api-sports.io/players/squads`, {
+            params: {
+                team: id
+            },
+            headers: {
+                'Accept-Encoding': 'application/json'
+            }
+        });
+
+        return res.data.response;
+    }
+
+    async getTeamMatches(team: number, season: number) {
+        const res = await axios.get(`https://v3.football.api-sports.io/fixtures`, {
+            params: {
+                team, season
+            },
+            headers: {
+                'Accept-Encoding': 'application/json'
+            }
+        });
+
+        console.log(res);
+
         return res.data.response;
     }
 }

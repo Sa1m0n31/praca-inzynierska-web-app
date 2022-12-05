@@ -80,8 +80,16 @@
     width: 18%;
 }
 
+.block__header {
+    position: relative;
+}
+
 .teamPicker {
     margin: 40px auto;
+}
+
+.teamPicker--squads {
+    align-items: flex-start;
 }
 
 .block--teamPicker {
@@ -180,4 +188,151 @@
 .block__team__name--win {
     font-weight: 700;
     color: lightgreen;
+}
+
+.squad__avgAge {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 13px;
+    font-weight: 400;
+    border-radius: 15px;
+    padding: 5px 10px;
+    background: #E83651;
+}
+
+.squad__item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px 0;
+}
+
+.squad__item > * {
+    display: block;
+}
+
+.squad__item__position {
+    width: 10%;
+}
+
+.squad__item__name {
+    width: 75%;
+}
+
+.block--squad .block__header {
+    margin-bottom: 15px;
+}
+
+.squad__item--borderTop {
+    border-top: 1px solid #efefef;
+    padding-top: 10px;
+    margin-top: 10px;
+}
+
+.lastMatches__series {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.series {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 13px;
+    font-weight: 700;
+    margin: 0 8px 8px 0;
+}
+
+.series--win {
+    background: green;
+}
+
+.series--draw {
+    background: cornflowerblue;
+}
+
+.series--lost {
+    background: red;
+}
+
+.lastMatches__match {
+    margin-bottom: 10px;
+}
+
+.lastMatches__match > .d-block {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.lastMatches__match > .d-block:nth-child(2) {
+    font-size: 12px;
+}
+
+.lastMatches__match__date {
+    padding-right: 10px;
+}
+
+.teamWin * {
+    color: greenyellow;
+}
+
+.teamLost * {
+    color: red;
+}
+
+.teamDraw * {
+    color: cornflowerblue;
+}
+
+.lastMatches__picker {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.btn--lastMatches {
+    background: transparent;
+    width: 32px;
+    height: 32px;
+    border: 2px solid #E83651;
+    margin-right: 15px;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.btn--lastMatches--selected {
+    background: #E83651;
+}
+
+.lastMatches__picker__header {
+    font-size: 13px;
+    padding-right: 20px;
+}
+
+.btn--submit {
+    width: 100%;
+    height: 60px;
+    border-radius: 60px;
+    background: #E83651;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 30px;
+}
+
+.btn--submit:hover {
+    background: #D62530;
 }

@@ -29,7 +29,7 @@ const Head2Head = ({matches}) => {
                 </div>
 
                 <div className="block__team">
-                    <p className={item.awayTeamScore > item.homeTeamScore ? "block__team__name block__team__name" : "block__team__name"}>
+                    <p className={item.awayTeamScore > item.homeTeamScore ? "block__team__name block__team__name--win" : "block__team__name"}>
                         {item.awayTeam.name}
                     </p>
                     <img className="img" src={item.awayTeam.logo} alt="logo" />
