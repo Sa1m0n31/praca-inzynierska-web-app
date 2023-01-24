@@ -5,6 +5,31 @@ import axios from "axios";
 export class PredictionService {
     constructor() {
     }
+    
+    getMean(arr) {
+        const sum = arr.reduce((prev, curr) => {
+            return prev + curr;
+        }, 0);
+
+        return sum / arr.length;
+    }
+
+    async predict(homeTeamId: number, awayTeamId: number) {
+        const homeTeamLastGames = await this.getLastGamesByTeam(homeTeamId, 10);
+        const awayTeamLastGames = await this.getLastGamesByTeam(awayTeamId, 10);
+
+        const home_team_goals_diff = this.getMean(homeTeamLastGames.map((item) => (item.goalDiff)));
+        const away_team_goals_diff = this.getMean(awayTeamLastGames.map((item) => (item.goalDiff)));
+        const home_team_pass_diff = this.getMean(homeTeamLastGames.map((item) => (item.passDiff)));
+        const away_team_pass_diff = this.getMean(awayTeamLastGames.map((item) => (item.passDiff)));
+
+        return axios.post(`http://localhost:5000/predict`, {
+            home_team_goals_diff,
+            away_team_goals_diff,
+            home_team_pass_diff,
+            away_team_pass_diff
+        });
+    }
 
     async getLastGamesByTeam(teamId: number, numberOfGames: number) {
         const lastGames = await axios.get(`https://v3.football.api-sports.io/fixtures`, {
@@ -41,19 +66,12 @@ export class PredictionService {
                 return item.team.id === awayTeamId;
             });
 
+            const homeTeamPasses = getStat('Total passes', homeTeamStats);
+            const awayTeamPasses = getStat('Total passes', awayTeamStats);
+
             lastGamesStats.push({
-                homeTeamId: homeTeamId,
-                awayTeamId: awayTeamId,
-                homeTeamScore: game.goals.home,
-                awayTeamScore: game.goals.away,
-                homeTeamShots: getStat('Total shots', homeTeamStats),
-                awayTeamShots: getStat('Total shots', awayTeamStats),
-                homeTeamShotsOnTarget: getStat('Shots on goal', homeTeamStats),
-                awayTeamShotsOnTarget: getStat('Shots on goal', awayTeamStats),
-                homeTeamPasses: getStat('Total passes', homeTeamStats),
-                awayTeamPasses: getStat('Total passes', awayTeamStats),
-                homeTeamPossession: getStat('Ball Possession', homeTeamStats),
-                awayTeamPossession: getStat('Ball Possession', awayTeamStats)
+                goalDiff: homeTeamId === teamId ? game.goals.home - game.goals.away : game.goals.away - game.goals.home,
+                passDiff: homeTeamId === teamId ? homeTeamPasses - awayTeamPasses : awayTeamPasses - homeTeamPasses
             });
         }
 
